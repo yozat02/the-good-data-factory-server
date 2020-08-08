@@ -1,7 +1,7 @@
 
 var express = require('express');
 var app = express();
-
+process.env['MESSAGE_STYLE'] = "uppercase"
 // --> 7)  Mount the Logger middleware here
 
 
@@ -26,9 +26,17 @@ app.use(express.static(__dirname + "/public"));
 
 /** 5) serve JSON on a specific route */
 app.get("/json", (req,res) => {
-    res.json({
-        "message": "Hello json"
-    })
+    console.log(process.env)
+    if( process.env.MESSAGE_STYLE === "uppercase" ){
+        res.json({
+            "message": "HELLO JSON"
+        })
+    }
+    else {
+        res.json({
+            "message": "Hello json"
+        })
+    }
 })
 
 /** 6) Use the .env file to configure the app */
