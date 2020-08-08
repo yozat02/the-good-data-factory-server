@@ -3,7 +3,11 @@ var express = require('express');
 var app = express();
 process.env['MESSAGE_STYLE'] = "uppercase"
 // --> 7)  Mount the Logger middleware here
-
+app.use(function middleware(req, res, next) {
+    console.log(req.method,req.path,"-",req.ip)
+     // Call the next function in line:
+     next();
+   });
 
 // --> 11)  Mount the body-parser middleware  here
 
@@ -26,7 +30,7 @@ app.use(express.static(__dirname + "/public"));
 
 /** 5) serve JSON on a specific route */
 app.get("/json", (req,res) => {
-    console.log(process.env)
+    //console.log(process.env)
     if( process.env.MESSAGE_STYLE === "uppercase" ){
         res.json({
             "message": "HELLO JSON"
@@ -44,7 +48,6 @@ app.get("/json", (req,res) => {
  
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
-
 
 /** 8) Chaining middleware. A Time server */
 
