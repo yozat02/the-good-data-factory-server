@@ -1,4 +1,5 @@
 {
+	"homepage": "http://yozat02.github.io/the-good-data-factory-server",
 	"name": "fcc-learn-node-with-express",
 	"version": "0.1.0",
 	"dependencies": {
@@ -10,9 +11,14 @@
 	},
 	"main": "server.js",
 	"scripts": {
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build",
 		"start": "node server.js"
 	},
 	"engines": {
 		"node": "4.7.0"
+	},
+	"devDependencies": {
+		"gh-pages": "^3.1.0"
 	}
 }
