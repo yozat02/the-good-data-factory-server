@@ -7,6 +7,8 @@ var bGround = require('fcc-express-bground');
 var myApp = require('./myApp');
 var express = require('express');
 var app = express();
+// set the view engine to ejs
+app.set('view engine', 'ejs');
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function(req, res, next) {
