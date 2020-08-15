@@ -3,7 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser')
 process.env['MESSAGE_STYLE'] = "uppercase"
-
+var products = require("./products.json") ;
 // --> 7)  Mount the Logger middleware here
 app.use(function middleware(req, res, next) {
     console.log(req.method,req.path,"-",req.ip)
@@ -47,7 +47,9 @@ app.get("/json", (req,res) => {
 })
 
 /** 6) Use the .env file to configure the app */
- 
+ app.get("/Products",(req,res) =>{
+     res.json(products)
+ })
  
 /** 7) Root-level Middleware - A logger */
 //  place it before all the routes !
